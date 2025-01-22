@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brazuca Storage - Sua Loja Brasileira de Games</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-gamepad"></i>
+                Brazuca Storage
+            </div>
+            <div class="search-bar">
+                <input type="text" id="pesquisa" placeholder="Buscar jogos...">
+                <button onclick="pesquisarJogos()"><i class="fas fa-search"></i></button>
+            </div>
+            <ul>
+                <li><a href="#" class="active" onclick="showSection('produtos')"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="#" onclick="showSection('categorias')"><i class="fas fa-tags"></i> Categorias</a></li>
+                <li>
+                    <a href="#" class="cart-icon" onclick="abrirModalCarrinho(); return false;">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="carrinho-contador">0</span>
+                    </a>
+                </li>
+                <li><a href="login.html"><i class="fas fa-user"></i> Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="produtos" class="section-active">
+            <div class="carousel">
+                <button class="carousel-btn prev" onclick="navegarCarrosselPrincipal(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="carousel-wrapper" id="carousel-principal">
+                    <div class="carousel-slide">
+                        <img src="https://meups.com.br/wp-content/uploads/2023/06/FC-24-900x503.jpg" alt="EA Sports FC 24">
+                        <div class="carousel-content">
+                            <h2>EA Sports FC 24</h2>
+                            <p>O novo simulador de futebol da EA Sports</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://image.api.playstation.com/vulcan/ap/rnd/202306/1219/60eca3ac155f0f7b343741eca46e56b8d825bfdd31d124db.jpg" alt="Marvel's Spider-Man 2">
+                        <div class="carousel-content">
+                            <h2>Marvel's Spider-Man 2</h2>
+                            <p>A nova aventura do Homem-Aranha</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://image.api.playstation.com/vulcan/ap/rnd/202308/1623/a3dbc6375106ee4c0abe33660728e68a8a707bfb83930c50.jpg" alt="Mortal Kombat 1">
+                        <div class="carousel-content">
+                            <h2>Mortal Kombat 1</h2>
+                            <p>O retorno da lendária franquia de luta</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://assets.xboxservices.com/assets/45/5a/455a189b-0e7a-48bc-a966-9bf5ec8c08c2.jpg?n=Forza-Motorsport_GLP-Page-Hero-1084_1920x1080.jpg" alt="Forza Motorsport">
+                        <div class="carousel-content">
+                            <h2>Forza Motorsport</h2>
+                            <p>A nova geração de corridas chegou</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn next" onclick="navegarCarrosselPrincipal(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="destaques-section">
+                <h2>Destaques da Semana</h2>
+                <div class="destaques-grid">
+                    <div class="destaque-card">
+                        <i class="fas fa-percentage"></i>
+                        <h3>Promoções</h3>
+                        <p>Economize em grandes títulos</p>
+                    </div>
+                    <div class="destaque-card">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Mais Vendidos</h3>
+                        <p>Os favoritos da comunidade</p>
+                    </div>
+                    <div class="destaque-card">
+                        <i class="fas fa-star"></i>
+                        <h3>Pré-vendas</h3>
+                        <p>Reserve seu jogo favorito</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filtros-container">
+                <div class="filtros">
+                    <div class="filtro-grupo">
+                        <label><i class="fas fa-filter"></i> Filtrar por:</label>
+                        <select id="categoria-filtro" onchange="filtrarProdutos()">
+                            <option value="">Todos os Jogos</option>
+                            <option value="acao">Ação</option>
+                            <option value="aventura">Aventura</option>
+                            <option value="rpg">RPG</option>
+                            <option value="esporte">Esporte</option>
+                            <option value="estrategia">Estratégia</option>
+                            <option value="corrida">Corrida</option>
+                            <option value="simulacao">Simulação</option>
+                            <option value="luta">Luta</option>
+                            <option value="tiro">Tiro</option>
+                            <option value="plataforma">Plataforma</option>
+                        </select>
+                    </div>
+                    <div class="filtro-grupo">
+                        <label><i class="fas fa-dollar-sign"></i> Preço:</label>
+                        <select id="preco-filtro" onchange="filtrarProdutos()">
+                            <option value="">Todos os Preços</option>
+                            <option value="0-50">Até R$ 50</option>
+                            <option value="50-100">R$ 50 - R$ 100</option>
+                            <option value="100-200">R$ 100 - R$ 200</option>
+                            <option value="200+">Acima de R$ 200</option>
+                        </select>
+                    </div>
+                    <div class="filtro-grupo">
+                        <label><i class="fas fa-sort"></i> Ordenar por:</label>
+                        <select id="ordenar-filtro" onchange="ordenarProdutos()">
+                            <option value="relevancia">Relevância</option>
+                            <option value="preco-menor">Menor Preço</option>
+                            <option value="preco-maior">Maior Preço</option>
+                            <option value="nome">Nome A-Z</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="filtros-ativos" class="filtros-ativos"></div>
+
+            <section class="jogos-recomendados">
+                <h2>Jogos Recomendados</h2>
+                <div class="jogos-carousel">
+                    <button class="carousel-btn prev" onclick="navegarCarrossel('jogos-recomendados', -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="jogos-wrapper" id="jogos-recomendados"></div>
+                    <button class="carousel-btn next" onclick="navegarCarrossel('jogos-recomendados', 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <section class="jogos-mais-vendidos">
+                <h2>Mais Vendidos</h2>
+                <div class="jogos-carousel">
+                    <button class="carousel-btn prev" onclick="navegarCarrossel('jogos-mais-vendidos', -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="jogos-wrapper" id="jogos-mais-vendidos"></div>
+                    <button class="carousel-btn next" onclick="navegarCarrossel('jogos-mais-vendidos', 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+        </section>
+
+        <section id="categorias" class="hidden">
+            <h2>Categorias</h2>
+            <div class="categorias-grid">
+                <div class="categoria-card" onclick="filtrarPorCategoria('')">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Todos os Jogos</h3>
+                </div>
+                <div class="categoria-card" onclick="filtrarPorCategoria('acao')">
+                    <i class="fas fa-fire"></i>
+                    <h3>Ação</h3>
+                </div>
+                <div class="categoria-card" onclick="filtrarPorCategoria('aventura')">
+                    <i class="fas fa-mountain"></i>
+                    <h3>Aventura</h3>
+                </div>
+                <div class="categoria-card" onclick="filtrarPorCategoria('rpg')">
+                    <i class="fas fa-dragon"></i>
+                    <h3>RPG</h3>
+                </div>
+                <div class="categoria-card" onclick="filtrarPorCategoria('esporte')">
+                    <i class="fas fa-futbol"></i>
+                    <h3>Esporte</h3>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Brazuca Storage</h3>
+                <p>Sua loja brasileira de games</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p><i class="fas fa-envelope"></i> contato@brazucastorage.com</p>
+                <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+            </div>
+            <div class="footer-section">
+                <h3>Redes Sociais</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Brazuca Storage. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <div id="notification" class="notification"></div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+</body>
+</html>

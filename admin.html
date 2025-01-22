@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Brazuca Storage</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styleAdmin.css">
+</head>
+<body>
+    <div class="admin-header">
+        <div class="logo">
+            <i class="fas fa-gamepad"></i>
+            Brazuca Storage Admin
+        </div>
+        <div class="admin-nav">
+            <a href="index.html" class="btn-primary">
+                <i class="fas fa-home"></i> Ver Site
+            </a>
+            <button onclick="logout()" class="btn-danger">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+        </div>
+    </div>
+
+    <main>
+        <div class="admin-stats">
+            <div class="stat-card">
+                <i class="fas fa-gamepad"></i>
+                <div class="stat-value" id="total-produtos">0</div>
+                <p>Total de Produtos</p>
+                <div class="stat-trend">
+                    <i class="fas fa-arrow-up"></i>
+                    <span id="produtos-trend">0%</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-shopping-cart"></i>
+                <div class="stat-value" id="total-vendas">0</div>
+                <p>Vendas Realizadas</p>
+                <div class="stat-info">Média: R$ <span id="media-vendas">0.00</span></div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <div class="stat-value" id="total-usuarios">0</div>
+                <p>Usuários Admin</p>
+                <div class="stat-info">Ativos: <span id="usuarios-ativos">0</span></div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-dollar-sign"></i>
+                <div class="stat-value" id="lucro-total">R$ 0.00</div>
+                <p>Lucro Total</p>
+                <div class="stat-trend">
+                    <i class="fas fa-chart-line"></i>
+                    <span id="lucro-trend">+0%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-section">
+            <h2>Gerenciar Administradores</h2>
+            <div class="admin-grid">
+                <div class="admin-form-container">
+                    <form id="admin-form" class="glass-form">
+                        <h3>Adicionar/Editar Administrador</h3>
+                        <input type="hidden" id="edit-admin-id">
+                        <div class="form-group">
+                            <label>Nome Completo</label>
+                            <input type="text" id="admin-nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Nome de Usuário</label>
+                            <input type="text" id="admin-username" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="admin-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Senha</label>
+                            <input type="password" id="admin-password" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Nível de Acesso</label>
+                            <select id="admin-nivel" required>
+                                <option value="admin">Administrador</option>
+                                <option value="editor">Editor</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i> Salvar Administrador
+                        </button>
+                    </form>
+                </div>
+                <div class="admins-list">
+                    <h3>Administradores Cadastrados</h3>
+                    <div id="admins-grid"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-container">
+            <div class="admin-sidebar">
+                <h3>Gerenciar Produtos</h3>
+                <form id="produto-form" class="admin-form" onsubmit="salvarProduto(event)">
+                    <input type="hidden" id="edit-id">
+                    <div class="form-group">
+                        <label for="nome">Nome do Jogo:</label>
+                        <input type="text" id="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="preco">Preço:</label>
+                        <input type="number" id="preco" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoria">Categoria:</label>
+                        <select id="categoria" required>
+                            <option value="">Selecione uma categoria</option>
+                            <option value="acao">Ação</option>
+                            <option value="aventura">Aventura</option>
+                            <option value="rpg">RPG</option>
+                            <option value="esporte">Esporte</option>
+                            <option value="estrategia">Estratégia</option>
+                            <option value="corrida">Corrida</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="imagem">URL da Imagem:</label>
+                        <input type="text" id="imagem" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao">Descrição:</label>
+                        <textarea id="descricao" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Salvar Produto
+                    </button>
+                </form>
+            </div>
+            <div class="admin-content">
+                <h3>Lista de Produtos</h3>
+                <div id="produtos-admin-lista" class="admin-produtos-grid"></div>
+            </div>
+        </div>
+    </main>
+
+    <div id="notification" class="notification"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+    <script>
+        // Verificar autenticação
+        if (!localStorage.getItem('adminAuthenticated')) {
+            window.location.href = 'login.html';
+        }
+
+        // Inicializar a página quando carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Página admin carregada');
+            initAdminPage();
+            // Inicializar o gerenciador de admins
+            window.adminManager = new AdminManager();
+        });
+
+        function logout() {
+            localStorage.removeItem('adminAuthenticated');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

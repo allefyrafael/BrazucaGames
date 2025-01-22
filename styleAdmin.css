@@ -1,0 +1,497 @@
+/* Header do Admin */
+.admin-header {
+    background: var(--dark-color);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.admin-header .logo {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+}
+
+.admin-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Container Principal */
+main {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+/* Cards de Estatísticas */
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: var(--dark-color);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--glass-border);
+}
+
+.stat-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-light);
+    margin: 1rem 0;
+}
+
+/* Seções do Admin */
+.admin-section {
+    background: var(--dark-color);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.admin-section h2 {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+/* Container de Gerenciamento */
+.admin-grid {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+/* Formulários mais compactos */
+.admin-form, .glass-form {
+    background: var(--dark-color);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    height: fit-content;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* Inputs mais compactos */
+input,
+select,
+textarea,
+.admin-form input,
+.admin-form select,
+.admin-form textarea,
+.glass-form input,
+.glass-form select,
+.glass-form textarea,
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.7rem;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    color: var(--text-light) !important;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+/* Estado de foco padronizado para todos os inputs */
+input:focus,
+select:focus,
+textarea:focus,
+.admin-form input:focus,
+.admin-form select:focus,
+.admin-form textarea:focus,
+.glass-form input:focus,
+.glass-form select:focus,
+.glass-form textarea:focus,
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+    background: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Placeholder padronizado */
+input::placeholder,
+select::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Cor do texto nas options dos selects */
+select option {
+    background-color: var(--dark-color);
+    color: var(--text-light);
+}
+
+/* Remover estilização padrão do navegador */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--dark-color) inset !important;
+    -webkit-text-fill-color: var(--text-light) !important;
+}
+
+/* Grid de Produtos */
+.admin-produtos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.admin-produto-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-produto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.admin-produto-card .produto-imagem {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.admin-produto-card .produto-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.admin-produto-card .produto-info {
+    padding: 1.5rem;
+}
+
+.admin-produto-card h3 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+}
+
+.admin-produto-card .categoria {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.admin-produto-card .descricao {
+    color: var(--text-light);
+    opacity: 0.8;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.admin-produto-card .preco {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.admin-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.admin-buttons button {
+    flex: 1;
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.admin-buttons .btn-primary {
+    background: var(--primary-color);
+    color: var(--dark-color);
+}
+
+.admin-buttons .btn-danger {
+    background: #e74c3c;
+    color: white;
+}
+
+.admin-buttons button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+/* Estilo do SweetAlert personalizado */
+.swal2-popup {
+    background: var(--dark-color) !important;
+    border: 1px solid var(--glass-border);
+}
+
+.swal2-title, .swal2-content {
+    color: var(--text-light) !important;
+}
+
+.swal2-confirm, .swal2-cancel {
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    padding: 0.8rem 1.5rem !important;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .admin-grid {
+        grid-template-columns: 350px 1fr;
+    }
+}
+
+@media (max-width: 992px) {
+    .admin-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
+
+    .admin-section {
+        padding: 1.5rem;
+    }
+
+    .admin-nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .admin-header {
+        padding: 1rem;
+    }
+
+    .admin-produtos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-buttons {
+        flex-direction: column;
+    }
+
+    .stat-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.admin-section, .stat-card, .admin-produto-card {
+    animation: fadeIn 0.5s ease;
+}
+
+/* Lista de admins */
+.admins-list {
+    background: var(--dark-color);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+}
+
+.admin-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.admin-info {
+    flex: 1;
+}
+
+.admin-info h4 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.admin-info p {
+    color: var(--text-light);
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+.badge.admin {
+    background: var(--primary-color);
+    color: var(--dark-color);
+}
+
+.badge.editor {
+    background: var(--accent-color);
+    color: white;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.admin-actions button {
+    padding: 0.6rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.admin-actions button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+/* Botão de sair */
+.btn-danger {
+    background: #e74c3c;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+/* Cores das categorias */
+.categoria-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.categoria-tag.ACAO {
+    background: #ff4757;
+    color: white;
+}
+
+.categoria-tag.AVENTURA {
+    background: #2ed573;
+    color: white;
+}
+
+.categoria-tag.RPG {
+    background: #5352ed;
+    color: white;
+}
+
+.categoria-tag.ESPORTE {
+    background: #ffa502;
+    color: white;
+}
+
+.categoria-tag.ESTRATEGIA {
+    background: #2f3542;
+    color: white;
+}
+
+.categoria-tag.CORRIDA {
+    background: #ff6b81;
+    color: white;
+}
